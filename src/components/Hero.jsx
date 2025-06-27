@@ -2,6 +2,10 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
+  import image from "@/assets/images/hero-1.png";
+  import breakfast from "@/assets/images/hero-2.png";
+  import lunch from "@/assets/images/hero-3.png";
+  import dinner from "@/assets/images/hero-4.png";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
 const Hero = () => {

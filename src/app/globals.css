@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.first {
+  --background: rgb(137, 41, 8);
+  --forbackground: rgb(165, 53, 42);
+}
+
+.second {
+  --background: rgb(21, 70, 105);
+  --forbackground: rgb(12, 54, 89);
+}
+
+.third {
+  --background: rgb(149, 54, 83);
+  --forbackground: rgb(169, 92, 104);
+}
+
+.fourth {
+  --background: rgb(41, 102, 102);
+  --forbackground: rgb(17, 51, 51);
+}

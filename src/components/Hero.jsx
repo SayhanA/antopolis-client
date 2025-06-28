@@ -74,10 +74,10 @@ const Hero = () => {
             and proteins, that contribute to a balanced diet.{" "}
           </p>
 
-          <div className="mt-8 mb-[70px] md:hidden w-full flex justify-between items-center">
+          <div className="mt-8 mb-[70px] md:hidden w-full flex justify-between items-center relative">
             <div
               onClick={handleRight}
-              className={`w-[41px] h-[41px] rounded-full flex justify-center items-center ${
+              className={`w-[41px] h-[41px] rounded-full flex justify-center items-center absolute -start-5 ${
                 rotate === 0 && "bg-[#A52A2A]"
               } ${rotate === 90 && "bg-[#0c3659]"} ${
                 rotate === 180 && "bg-[#a95c68]"
@@ -93,14 +93,14 @@ const Hero = () => {
                 src={img.img}
                 width={270}
                 height={270}
-                className={`${rotate === img.rotate ? "block" : "hidden"}`}
+                className={`${rotate === img.rotate ? "block mx-auto" : "hidden"}`}
                 alt="Breakfast food"
               />
             ))}
 
             <div
               onClick={handleLeft}
-              className={`w-[41px] h-[41px] rounded-full flex justify-center items-center ${
+              className={`w-[41px] h-[41px] rounded-full flex justify-center items-center absolute -end-5 ${
                 rotate === 0 && "bg-[#A52A2A]"
               } ${rotate === 90 && "bg-[#0c3659]"} ${
                 rotate === 180 && "bg-[#a95c68]"

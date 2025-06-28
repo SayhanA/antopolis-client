@@ -98,7 +98,7 @@ export default function BestSellerDishes() {
                   <h3 className="md:text-[31px] text-[12.19px] font-[500] mb-3">
                     {dish.name}
                   </h3>
-                  <SecondaryBtn className="bg-[#A52A2A]">Buy Now</SecondaryBtn>
+                  <SecondaryBtn className="bg-[#A52A2A] block md:hidden">Buy Now</SecondaryBtn>
                   <div className="md:block hidden">
                     <span
                       className={`px-6 py-2.5 text-xl rounded-full font-medium ${getCategoryColor(

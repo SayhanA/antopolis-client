@@ -7,7 +7,11 @@ export default function useInView(options = {}) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsInView(entry.isIntersecting),
-      options
+      {
+        threshold: 0.2,
+        rootMargin: "0px 0px -10% 0px", // triggers slightly earlier
+        ...options,
+      }
     );
 
     if (ref.current) observer.observe(ref.current);
@@ -16,3 +20,4 @@ export default function useInView(options = {}) {
 
   return [ref, isInView];
 }
+

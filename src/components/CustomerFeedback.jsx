@@ -33,13 +33,13 @@ export default function CustomerFeedback() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const currentData = testimonials[currentTestimonial];
 
-  const [leftRef, leftInView] = useInView({ threshold: 1 });
-  const [rightRef, rightInView] = useInView({ threshold: 1 });
+  const [leftRef, leftInView] = useInView({ threshold: 0.2 });
+  const [rightRef, rightInView] = useInView({ threshold: 0.2 });
 
   const goToTestimonial = (index) => setCurrentTestimonial(index);
 
   return (
-    <section className="px-6 bg-white relative overflow-hidden md:mb-10">
+    <section className="px-6 bg-white relative overflow-hidden mb-10">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Section */}

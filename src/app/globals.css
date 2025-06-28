@@ -1,21 +1,23 @@
 @import "tailwindcss";
 
-.first {
-  --background: rgb(137, 41, 8);
-  --forbackground: rgb(165, 53, 42);
+@keyframes marquee {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
-.second {
-  --background: rgb(21, 70, 105);
-  --forbackground: rgb(12, 54, 89);
+.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 3rem; /* mt-12 */
 }
 
-.third {
-  --background: rgb(149, 54, 83);
-  --forbackground: rgb(169, 92, 104);
+.marquee-track {
+  display: inline-flex;
+  gap: 2rem; /* gap-8 */
+  animation: marquee 20s linear infinite;
 }
 
-.fourth {
-  --background: rgb(41, 102, 102);
-  --forbackground: rgb(17, 51, 51);
-}

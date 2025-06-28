@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import cookimage from '@/assets/images/cook.png'
 
 const testimonials = [
   {
@@ -9,21 +10,21 @@ const testimonials = [
     text: "Fresh, flavorful, and just the right amount of heat. The tuna was buttery, the rice well-seasoned, and the chili mayo added a great kick. A must-try for sushi lovers.",
     customerName: "Tayyab Sohail",
     customerRole: "UX/UI Designer",
-    customerImage: "/placeholder.svg?height=60&width=60",
+    customerImage: cookimage,
   },
   {
     id: 2,
     text: "Absolutely amazing experience! The flavors were perfectly balanced and the presentation was beautiful. The chef really knows how to create magic with ingredients.",
     customerName: "Sarah Johnson",
     customerRole: "Food Blogger",
-    customerImage: "/placeholder.svg?height=60&width=60",
+    customerImage: cookimage,
   },
   {
     id: 3,
     text: "Outstanding quality and taste! Every bite was a delight. The attention to detail in preparation and the fresh ingredients make this place special.",
     customerName: "Mike Chen",
     customerRole: "Restaurant Owner",
-    customerImage: "/placeholder.svg?height=60&width=60",
+    customerImage: cookimage,
   },
 ];
 
@@ -47,13 +48,7 @@ export default function CustomerFeedback() {
   const currentData = testimonials[currentTestimonial];
 
   return (
-    <section className="py-16 px-6 bg-white relative overflow-hidden">
-      {/* Background decorative shapes */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-red-600 transform rotate-45 translate-x-48 -translate-y-48"></div>
-        <div className="absolute bottom-0 right-0 w-64 h-64 bg-red-500 transform rotate-12 translate-x-32 translate-y-32"></div>
-      </div>
-
+    <section className="px-6 bg-white relative overflow-hidden lg:mb-0  md:mb-10">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content - Desktop, Bottom Content - Mobile */}
@@ -95,7 +90,7 @@ export default function CustomerFeedback() {
                     onClick={() => goToTestimonial(index)}
                     className={`w-3 h-3 rounded-full transition-colors duration-300 ${
                       index === currentTestimonial
-                        ? "bg-red-600"
+                        ? "bg-[#ae3719]"
                         : "bg-gray-300 hover:bg-gray-400"
                     }`}
                     aria-label={`Go to testimonial ${index + 1}`}
@@ -107,11 +102,11 @@ export default function CustomerFeedback() {
 
           {/* Right Content - Desktop, Top Content - Mobile */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-            <div className="relative">
+            <div className="relative w-full max-w-[590px]">
               {/* Chef Image */}
-              <div className="w-80 h-80 lg:w-96 lg:h-96 relative">
+              <div className="relative">
                 <Image
-                  src="/placeholder.svg?height=400&width=400"
+                  src={cookimage}
                   alt="Professional chef making OK gesture"
                   width={400}
                   height={400}
@@ -120,7 +115,9 @@ export default function CustomerFeedback() {
               </div>
 
               {/* Red background accent */}
-              <div className="absolute -bottom-4 -right-4 w-72 h-72 lg:w-80 lg:h-80 bg-red-600 rounded-2xl -z-10"></div>
+              <div className="absolute start-1/2 -translate-x-1/2 bottom-0 w-[80%] h-[100%] -z-10 overflow-hidden">
+                <div className="bg-[#ae3719] w-[100%] h-[300%] absolute -top-[300px] rotate-[60deg]"></div>
+              </div>
             </div>
           </div>
         </div>

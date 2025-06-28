@@ -4,7 +4,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <nav className="absolute z-50 w-full">
+    <nav className="absolute z-50 w-full font-">
       <header className="z-20 top-0 md:mx-[60px] md:my-[50px] my-7 flex justify-between gap-10">
         <Link href={""} className="text-[32px] text-white font-bold hidden md:block">
           RESTAURANT

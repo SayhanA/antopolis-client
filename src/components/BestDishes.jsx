@@ -56,7 +56,7 @@ export default function BestSellerDishes() {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-nowrap min-[768px]:flex-wrap items-center justify-between gap-4 mb-12">
+        <div className="flex min-[375px]:flex-nowrap flex-wrap min-[768px]:flex-wrap items-center justify-between gap-4 mb-12">
           <div className="flex md:gap-2 gap-[5.5px]">
             {["All", "Breakfast", "Lunch", "Dinner"].map((filter) => (
               <PrimaryButton
@@ -93,11 +93,12 @@ export default function BestSellerDishes() {
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              <div className="md:p-6 p-2">
                 <div className="relative flex justify-between items-center">
                   <h3 className="md:text-[31px] text-[12.19px] font-[500] mb-3">
                     {dish.name}
                   </h3>
+                  <SecondaryBtn className="bg-[#A52A2A]">Buy Now</SecondaryBtn>
                   <div className="md:block hidden">
                     <span
                       className={`px-6 py-2.5 text-xl rounded-full font-medium ${getCategoryColor(

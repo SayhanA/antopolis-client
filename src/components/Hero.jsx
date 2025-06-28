@@ -58,7 +58,7 @@ const Hero = () => {
 
   return (
     <div
-      className={`h-screen w-[100%] rounded-b-[20px] overflow-hidden relative ${
+      className={`h-screen min-h-[780px] w-[100%] rounded-b-[20px] overflow-hidden relative ${
         rotate === 0 && "bg-[#880808]"
       } ${rotate === 90 && "bg-[#154669]"} ${
         rotate === 180 && "bg-[#953653]"

@@ -1,6 +1,6 @@
-import Image from "next/image"
-import SectionHeader from "./SectionHeader"
-import cookServing from '@/assets/images/cook-serving.jpg'
+import Image from "next/image";
+import SectionHeader from "./SectionHeader";
+import cookServing from "@/assets/images/cook-serving.jpg";
 
 const teamMembers = [
   {
@@ -27,7 +27,7 @@ const teamMembers = [
     role: "Specialist",
     image: cookServing,
   },
-]
+];
 
 export default function TeamMember() {
   return (
@@ -37,7 +37,8 @@ export default function TeamMember() {
         <div className="text-center mb-16">
           <SectionHeader className="text-white">Team Member</SectionHeader>
           <p className="text-white/90 max-w-[442px] mx-auto leading-relaxed mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius sed pharetra dictum neque massa congue
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius sed
+            pharetra dictum neque massa congue
           </p>
         </div>
 
@@ -54,19 +55,24 @@ export default function TeamMember() {
                   src={member.image || "/placeholder.svg"}
                   alt={member.name}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
               {/* Member Info */}
               <div className="md:p-6 p-2 text-center">
-                <h3 className="md:text-xl text-[10.35px] font-semibold text-[#4F4F4F] mb-2">{member.name}</h3>
-                <p className="text-[#828282] font-medium md:text-base text-[8.28px]">{member.role}</p>
+                <h3 className="md:text-xl text-[10.35px] font-semibold text-[#4F4F4F] mb-2">
+                  {member.name}
+                </h3>
+                <p className="text-[#828282] font-medium md:text-base text-[8.28px]">
+                  {member.role}
+                </p>
               </div>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

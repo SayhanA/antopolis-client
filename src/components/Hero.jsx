@@ -93,6 +93,7 @@ const Hero = () => {
                 src={img.img}
                 width={270}
                 height={270}
+                priority
                 className={`${rotate === img.rotate ? "block mx-auto" : "hidden"}`}
                 alt="Breakfast food"
               />
@@ -122,6 +123,7 @@ const Hero = () => {
                   src={img.img}
                   width={180}
                   height={180}
+                  priority
                   className={`rotate-[180deg]`}
                   alt="Breakfast food"
                 />
@@ -155,6 +157,7 @@ const Hero = () => {
                 src={img.img}
                 width={630}
                 height={630}
+                priority
                 className={img.style}
                 alt="Breakfast food"
               />

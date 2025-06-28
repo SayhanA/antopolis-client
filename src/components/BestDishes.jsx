@@ -95,9 +95,7 @@ export default function BestSellerDishes() {
             No data found
           </div>
         ) : (
-          <div
-            className="grid grid-cols-2 lg:grid-cols-3 gap-8"
-          >
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-8">
             {foods.map((dish) => (
               <div
                 key={dish._id}
@@ -112,6 +110,8 @@ export default function BestSellerDishes() {
                     }
                     alt={dish.name}
                     fill
+                    priority="false"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover"
                   />
                 </div>

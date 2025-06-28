@@ -66,6 +66,7 @@ export default function CustomerFeedback() {
                     alt={currentData.customerName}
                     width={64}
                     height={64}
+                    priority="false"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -107,6 +108,7 @@ export default function CustomerFeedback() {
                   src={cookimage}
                   alt="Professional chef making OK gesture"
                   width={400}
+                  priority="false"
                   height={400}
                   className="w-full h-full object-cover rounded-2xl"
                 />

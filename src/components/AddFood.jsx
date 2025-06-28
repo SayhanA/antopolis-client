@@ -1,6 +1,5 @@
-"use client";
-
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import { useFoodStore } from "@/store/foodStore";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import SecondaryBtn from "./SecondaryBtn";
 import { toast } from "react-toastify";
@@ -10,44 +9,14 @@ const AddFood = () => {
   const modalRef = useRef(null);
   const [dragActive, setDragActive] = useState(false);
 
-  const handleDrag = useCallback((e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
-    }
-  }, []);
-
-  const handleDrop = useCallback((e, setFieldValue) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      setFieldValue("image", e.dataTransfer.files[0]);
-    }
-  }, []);
-
-  const handleClickOutside = (e) => {
-    if (modalRef.current && !modalRef.current.contains(e.target)) {
-      setIsOpen(false);
-    }
-  };
+  const { categories, fetchCategories, fetchFoods } = useFoodStore();
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.body.style.overflow = "";
-      document.removeEventListener("mousedown", handleClickOutside);
+    if (isOpen && categories.length === 0) {
+      fetchCategories();
     }
-    return () => {
-      document.body.style.overflow = "";
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
+  }, [isOpen, categories.length, fetchCategories]);
+
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
@@ -73,9 +42,11 @@ const AddFood = () => {
 
       const data = await response.json();
       toast.success("Food saved successfully.");
+      fetchFoods()
 
       resetForm();
       setIsOpen(false);
+
     } catch (error) {
       toast.error("Failed to add food");
     } finally {
@@ -141,18 +112,15 @@ const AddFood = () => {
                       >
                         Select category
                       </option>
-                      <option
-                        value="Breakfast"
-                        className="bg-gray-800 text-white"
-                      >
-                        Breakfast
-                      </option>
-                      <option value="Lunch" className="bg-gray-800 text-white">
-                        Lunch
-                      </option>
-                      <option value="Dinner" className="bg-gray-800 text-white">
-                        Dinner
-                      </option>
+                      {categories.map((cat) => (
+                        <option
+                          key={cat._id || cat.id || cat.name}
+                          value={cat.name}
+                          className="bg-gray-800 text-white"
+                        >
+                          {cat.name}
+                        </option>
+                      ))}
                     </Field>
                     <ErrorMessage
                       name="category"
@@ -160,41 +128,6 @@ const AddFood = () => {
                       className="text-red-500 text-sm mt-1"
                     />
                   </div>
-
-                  {/* Image Drag and Drop */}
-                  <div
-                    onDragEnter={handleDrag}
-                    onDragOver={handleDrag}
-                    onDragLeave={handleDrag}
-                    onDrop={(e) => handleDrop(e, setFieldValue)}
-                    className={`w-full border-2 border-dashed rounded-full px-4 py-3 border-red-500 bg-red-500/10 text-center transition relative ${
-                      dragActive
-                        ? "border-red-500 bg-red-50"
-                        : "border-gray-300"
-                    }`}
-                  >
-                    <span className="text-white">
-                      {dragActive
-                        ? "Drop the image here"
-                        : "Upload or Drag image here"}
-                    </span>
-                    <input
-                      type="file"
-                      name="image"
-                      accept="image/*"
-                      onChange={(e) =>
-                        setFieldValue("image", e.currentTarget.files[0])
-                      }
-                      className="absolute inset-0 opacity-0 cursor-pointer"
-                    />
-                  </div>
-
-                  {values.image && (
-                    <p className="mt-2 text-sm text-gray-700">
-                      Selected file:{" "}
-                      <span className="font-medium">{values.image.name}</span>
-                    </p>
-                  )}
 
                   {/* Submit Button */}
                   <div className="flex justify-end">

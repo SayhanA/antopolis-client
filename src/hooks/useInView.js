@@ -9,7 +9,7 @@ export default function useInView(options = {}) {
       ([entry]) => setIsInView(entry.isIntersecting),
       {
         threshold: 0.2,
-        rootMargin: "0px 0px -10% 0px", // triggers slightly earlier
+        rootMargin: "0px 0px -10% 0px",
         ...options,
       }
     );

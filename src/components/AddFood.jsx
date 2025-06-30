@@ -11,7 +11,7 @@ const AddFood = () => {
 
   const { categories, fetchCategories, fetchFoods } = useFoodStore();
 
-   const handleDrag = useCallback((e) => {
+  const handleDrag = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
     if (e.type === "dragenter" || e.type === "dragover") {
@@ -40,6 +40,14 @@ const AddFood = () => {
     if (isOpen && categories.length === 0) {
       fetchCategories();
     }
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, [isOpen, categories.length, fetchCategories]);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {

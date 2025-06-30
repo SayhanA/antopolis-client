@@ -11,12 +11,36 @@ const AddFood = () => {
 
   const { categories, fetchCategories, fetchFoods } = useFoodStore();
 
+   const handleDrag = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  }, []);
+
+  const handleDrop = useCallback((e, setFieldValue) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      setFieldValue("image", e.dataTransfer.files[0]);
+    }
+  }, []);
+
+  const handleClickOutside = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+
   useEffect(() => {
     if (isOpen && categories.length === 0) {
       fetchCategories();
     }
   }, [isOpen, categories.length, fetchCategories]);
-
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
@@ -42,11 +66,10 @@ const AddFood = () => {
 
       const data = await response.json();
       toast.success("Food saved successfully.");
-      fetchFoods()
+      fetchFoods();
 
       resetForm();
       setIsOpen(false);
-
     } catch (error) {
       toast.error("Failed to add food");
     } finally {
@@ -94,7 +117,6 @@ const AddFood = () => {
                       className="text-red-500 text-sm mt-1"
                     />
                   </div>
-
                   {/* Category Field */}
                   <div className="text-white">
                     <label className="block text-sm font-medium mb-2">
@@ -128,6 +150,39 @@ const AddFood = () => {
                       className="text-red-500 text-sm mt-1"
                     />
                   </div>
+                  {/* Image Drag and Drop */}
+                  <div
+                    onDragEnter={handleDrag}
+                    onDragOver={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDrop={(e) => handleDrop(e, setFieldValue)}
+                    className={`w-full border-2 border-dashed rounded-full px-4 py-3 border-red-500 bg-red-500/10 text-center transition relative ${
+                      dragActive
+                        ? "border-red-500 bg-red-50"
+                        : "border-gray-300"
+                    }`}
+                  >
+                    <span className="text-white">
+                      {dragActive
+                        ? "Drop the image here"
+                        : "Upload or Drag image here"}
+                    </span>
+                    <input
+                      type="file"
+                      name="image"
+                      accept="image/*"
+                      onChange={(e) =>
+                        setFieldValue("image", e.currentTarget.files[0])
+                      }
+                      className="absolute inset-0 opacity-0 cursor-pointer"
+                    />
+                  </div>
+                  {values.image && (
+                    <p className="mt-2 text-sm text-gray-700">
+                      Selected file:{" "}
+                      <span className="font-medium">{values.image.name}</span>
+                    </p>
+                  )}
 
                   {/* Submit Button */}
                   <div className="flex justify-end">
